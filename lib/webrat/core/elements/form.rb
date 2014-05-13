@@ -115,13 +115,7 @@ module Webrat
     end
 
     def self.parse_rails_request_params(query_string)
-      if defined?(ActionController::AbstractRequest)
-        ActionController::AbstractRequest.parse_query_parameters(query_string)
-      elsif defined?(ActionController::UrlEncodedPairParser)
-        ActionController::UrlEncodedPairParser.parse_query_parameters(query_string)
-      else
-        Rack::Utils.parse_nested_query(query_string)
-      end
+      Rack::Utils.parse_nested_query(query_string)
     end
   end
 end
